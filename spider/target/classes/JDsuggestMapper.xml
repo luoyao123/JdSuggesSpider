@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cpu.spider.JDsuggest">
+	<resultMap type="cpu.spider.domain.JdSuggest" id="suggest">
+		<id property="id" column="id"/>
+		<result property="key" column="keyword" jdbcType="VARCHAR"/>
+		<result property="data" column="data" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="findbyid" resultMap="suggest">
+		SELECT * FROM jdSuggest
+		WHERE
+		id = #{id}
+	</select>
+	<insert id="batchInsert" parameterType="java.util.List">
+		INSERT INTO jdSuggest
+		(keyword,data)
+		VALUES
+		<foreach collection="list" item="suggest" index="index" open="" close="" separator=",">
+			(#{suggest.key},#{suggest.data})
+		</foreach>
+	</insert>
+</mapper>
