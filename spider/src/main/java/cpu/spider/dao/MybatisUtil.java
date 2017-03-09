@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import cpu.spider.domain.JdSuggest;
+import cpu.spider.domain.JdSuggestExtend;
 
 public class MybatisUtil {
 	private final String statement = "cpu.spider.JDsuggest.";
@@ -36,4 +37,13 @@ public class MybatisUtil {
 	public JdSuggest findByid(long id){
 		return get().openSession().selectOne(statement+"findbyid", id);
 	}
+	
+	public List<JdSuggest> findByRange(int page,int size){
+		JdSuggestExtend jse = new JdSuggestExtend();
+		jse.setPage(page);
+		jse.setStart(jse.getPage()*size);
+		jse.setSize(size);
+		return get().openSession().selectList(statement+"selectRange",jse);
+	}
+	
 }

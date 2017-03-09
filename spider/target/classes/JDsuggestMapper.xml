@@ -12,6 +12,10 @@
 		WHERE
 		id = #{id}
 	</select>
+	<select id="selectRange" resultMap="suggest">
+		SELECT keyword,data FROM jdSuggest
+		 LIMIT #{start},#{size}
+	</select>
 	<insert id="batchInsert" parameterType="java.util.List">
 		INSERT INTO jdSuggest
 		(keyword,data)

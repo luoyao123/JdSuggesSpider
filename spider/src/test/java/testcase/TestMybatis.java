@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import cpu.spider.dao.MybatisUtil;
 import cpu.spider.domain.JdSuggest;
+import cpu.spider.domain.JdSuggestExtend;
 
 public class TestMybatis {
 	@Test
@@ -27,6 +28,16 @@ public class TestMybatis {
 	@Test
 	public void test1(){
 		MybatisUtil mybatisUtil = new MybatisUtil();
-		System.out.println(mybatisUtil.findByid(5).toString());
+		JdSuggest jSuggest2=mybatisUtil.findByid(1);
+		if(jSuggest2.getData().replace(" ", "x") == ""){
+			System.out.println("空");
+		}
+		System.out.println(mybatisUtil.findByid(1).toString());
+	}
+	
+	@Test
+	public void test2(){
+		
+		System.out.println();
 	}
 }
